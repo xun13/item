@@ -6,6 +6,7 @@ $("button").click(function(){
 })
 $(".item").click(function(){
   var test = $(this).index();
+  $("audio")[test].play();
   if (test==arr[0]&&arr.length==1)
     {
       len++;
@@ -17,10 +18,9 @@ $(".item").click(function(){
         arr.shift();
       else
        { 
-          $("p").text("xxx");
-         console.log("erro")
+          $("p").text("xxx");       
          setTimeout(function(){
-           start();
+           start()
          },500);        
        }
     }
@@ -43,6 +43,7 @@ function start(){
 }
 function shine(ind){//闪烁
   $(".item").eq(ind).addClass(c[ind]);
+  $("audio")[ind].play();
   setTimeout(function(){
     $(".item").eq(ind).removeClass(c[ind]);
   },300)
