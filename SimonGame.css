@@ -1,0 +1,78 @@
+*{
+  padding:0;
+  margin:0;
+}
+body{
+  background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png')
+}
+.wrap{
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  margin:20px auto;
+  overflow:hidden;
+  background:black;
+  border:10px solid black;
+  position:relative;
+}
+.item{
+  float:left;
+  width:190px;
+  height:190px;
+  margin:5px;
+}
+.green{
+  background:#00A74A;
+  border-top-left-radius:100%;
+}
+.green:active{
+  box-shadow: inset 2px 1px 2px 1px rgba(0, 0, 0, 0.2);
+   background-color: #47c166; 
+}
+.red{
+  background:#9F0F17;
+  border-top-right-radius:100%;
+}
+.red:active{
+  box-shadow: inset -2px 1px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #ea3336;
+}
+.yellow{
+  background:#CCA707;
+  border-bottom-left-radius:100%;
+}
+.yellow:active{
+  box-shadow: inset 2px -1px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #f7f145;
+}
+.blue{
+  background:#094A8F;
+  border-bottom-right-radius:100%;
+}
+.blue:active{
+   box-shadow: inset -2px -1px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #05abff;
+}
+.control{
+  position:absolute;
+  width:170px;
+  height:170px;
+   background:#ECE7EE;
+  border-radius:50%;
+  border:10px solid black; 
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+}
+p{
+  padding:5px;
+  width:50px;
+  background:#380214;
+  display:block;
+  margin:50px auto 10px auto;
+  color:#BC3638;
+  font-size:1.5em;
+  border-radius:10px;
+  border:3px solid black;
+}
