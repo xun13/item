@@ -1,0 +1,38 @@
+*{
+  border:none;
+  text-align:center;
+  background-color:#333333;
+  color:#FFFFFF;
+  font-family: Open Sans,Arial;
+  font-size:20px;
+}
+.item{
+  display:inline-block;
+  margin-top:20px;
+}
+.clock{
+  width:300px;
+  height:300px;
+  border:2px solid #99CC00;
+   border-radius:50%;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  margin:20px auto;
+}
+.mask{
+  width:300px;
+  height:0%;
+  position:absolute;
+  background:green;
+  bottom:0;
+}
+.content p,.content input{
+  position:relative;
+  bottom:260px;
+  background:transparent;
+}
+.content input{
+  margin:30px;
+  font-size:1.2em;
+}
