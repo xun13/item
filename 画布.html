@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		画布
+	</title>
+
+</head>
+<body>
+<canvas id ="can" style="width:600px;height:300px;border:2px solid"></canvas>
+<button>
+  clear
+</button>
+<script type="text/javascript" src="jquery-3.2.1.js"></script>
+<script type="text/javascript">
+		$("#can").mousedown(function(event){
+  var c=document.getElementById("can");
+  var ctx=c.getContext("2d");
+  ctx.beginPath();
+  ctx.moveTo(event.pageX-c.offsetLeft,event.pageY-c.offsetTop);
+$("body").on("mousemove",function(event){ 
+  ctx.lineWidth=3;
+  ctx.lineTo(event.pageX-c.offsetLeft,event.pageY-c.offsetTop);
+  ctx.stroke();
+})
+$("body").mouseup(function(){
+  ctx.closePath();
+    $("body").off("mousemove");
+})
+})
+  
+$("button").click(function(){
+   var c=document.getElementById("can");
+  var ctx=c.getContext("2d");
+  ctx.beginPath();
+  ctx.clearRect(0,0,600,300);  
+  ctx.closePath();
+})
+	</script>
+</body>
+</html>
