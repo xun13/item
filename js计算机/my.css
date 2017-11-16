@@ -1,0 +1,39 @@
+.box{
+  display:flex;
+ flex-wrap:wrap;
+  justify-content:center;
+  width:200px;
+  height:auto;
+  background-color:#C47335;
+}
+button{
+  flex-grow:1;
+  border:none;
+  width:40px;
+  height:40px;
+  margin:2px;
+  color:#F39973;
+  background-color:#FFFFFF;
+  
+}
+div{
+  width:300px;
+  background-color:#C47335;
+  margin:auto;
+  overflow:auto;
+  text-align:center;
+  padding-bottom:10px;
+  border-radius:5px;
+}
+input{
+  width:196px;
+  height:2em;
+  text-align:right;
+  background-color:#F19953;
+  border:none;
+  margin-bottom:2px;
+}
+p{
+  font-family: "Oleo Script",cursive;
+  color:#F19953;
+}
