@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		水平轮播
+	</title>
+	<style type="text/css">
+		*{
+	  padding:0;
+	  margin:0;
+	}
+	img{
+	  width:200px;
+	  height:auto;
+	  display:block;
+	  float:left;
+	}
+	.nav{
+	  width:1200px;
+	  margin:20px auto;
+	}
+	.back{
+	  transition:all .5s;
+	  position:relative;
+	  z-index:-1;
+	  
+	}
+	.hid{
+	  width:1200px;
+	  height:500px;
+	  overflow:hidden;
+	  margin-bottom:-25px;
+	}
+	.back img{
+	  width:1200px;
+	  height:500px;
+	  position:absolute;
+	}
+	.item{
+	 float:left;
+	  width:200px;
+	  height:5px;
+	  overflow:hidden;
+	}
+	span{
+	  display:block;
+	  width:0px;
+	  height:5px;
+	}
+
+	</style>
+</head>
+<body>
+<div class="nav">
+  <div class="hid">
+  <div class="back">
+   <img src="https://jiangshanmeta.github.io/carousel/lunbo0/img/banner_00.jpg"/>
+    <img style="left:1200px" src="https://jiangshanmeta.github.io/carousel/lunbo0/img/banner_01.jpg"/>
+    <img style="left:2400px" src="https://jiangshanmeta.github.io/carousel/lunbo0/img/banner_02.jpg"/>
+    <img style="left:3600px" src="https://jiangshanmeta.github.io/carousel/lunbo0/img/banner_03.jpg"/>
+    <img style="left:4800px" src="https://jiangshanmeta.github.io/carousel/lunbo0/img/banner_04.jpg"/>
+    <img style="left:6000px" src="https://jiangshanmeta.github.io/carousel/lunbo0/img/banner_05.jpg"/>
+    </div>
+  </div>
+	<img src="https://jiangshanmeta.github.io/carousel/lunbo0/img/sbanner_00.png"/>
+	<img src="https://jiangshanmeta.github.io/carousel/lunbo0/img/sbanner_01.png"/>
+	<img src="https://jiangshanmeta.github.io/carousel/lunbo0/img/sbanner_02.png"/>
+	<img src="https://jiangshanmeta.github.io/carousel/lunbo0/img/sbanner_03.png"/>
+	<img src="https://jiangshanmeta.github.io/carousel/lunbo0/img/sbanner_04.png"/>
+	<img src="https://jiangshanmeta.github.io/carousel/lunbo0/img/sbanner_05.png"/>
+	  <div class="item">
+	    <span></span>
+	  </div>
+	  <div class="item">
+	    <span></span>
+	  </div>
+	  <div class="item">
+	    <span></span>
+	  </div>
+	  <div class="item">
+	    <span></span>
+	  </div>
+	  <div class="item">
+	    <span></span>
+	  </div>
+	  <div class="item">
+	    <span></span>
+	  </div>
+</div>
+</body>
+<script type="text/javascript" src="jquery-3.2.1.js"></script>
+<script type="text/javascript">
+	var i=0,time=null;
+	var odiv = document.getElementsByClassName("back")[0];
+	var colorArr=["#7B5596","#83A2CC","#D78A3C","#47ACAB","#CB6A8B","#7D73CA"];
+	var colorArr1=["#49047a","#13478F","#b94e00","#00605f","#A41A4A","#4a419e"];
+	start();
+	function start(){
+	 setInterval(function(){ 
+	    i++;
+	   $("span").eq(i-1).width("0px");
+	    if (i>5)
+	      i=0;
+	    odiv.style.right=i*1200+"px";     
+	   col();
+	  },1000)
+	}
+	
+	for (var  j=0;j<colorArr.length;j++){
+	  $("span").eq(j).css("background-color",colorArr1[j]);
+	  $(".item").eq(j).css("background-color",colorArr[j]);
+	}
+	function col(){
+	  var j=0;
+	  time = setInterval(function(){
+	    if (j<99)
+	   {    
+	     $("span").eq(i).width("+=2px");
+	   j++;
+	   }
+	    else
+	      {clearInterval(time);
+	      j=0;}
+	  },10)
+	}
+</script>
+</html>
