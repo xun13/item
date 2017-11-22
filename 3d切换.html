@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		3d切换
+	</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.test{
+			width:200px;
+			height:200px;
+			border:2px solid gray;
+			position:relative;
+			-webkit-perspective:800px;
+			-webkit-perspective-origin: center bottom;
+            margin-top:20px;
+            overflow: hidden;
+		}
+		li{
+			list-style: none;
+            width:200px;
+            height:200px;
+            font-size:160px;
+            text-align:center;
+            line-height: 200px;
+            position:absolute;     
+            background: black;
+            color:white;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transform-origin: bottom;
+            -webkit-transform:rotateX(90deg);
+            transition: transform 1s ease;
+		}
+		#list1{
+			-webkit-transform:rotateX(0deg);
+		}
+		
+		
+		div{
+			width:204px;
+			margin:10px auto;
+		}
+		button{
+			float:left;
+			width:100px;
+			height:30px;
+			margin:1px;
+		}
+	</style>
+</head>
+<body>
+ <div class="test">
+ 	<ul>
+ 		<li id="list1">1</li>
+        <li id="list2">2</li>
+        <li id="list3">3</li>
+        <li id="list4">4</li>
+        <li id="list5">5</li>
+ 	</ul>
+ </div>
+ <div>
+ <button>prev</button>
+ <button>next</button>
+</div>
+ <script type="text/javascript">
+ 	var prev = document.getElementsByTagName("button")[0];
+ 	var next = document.getElementsByTagName("button")[1];
+    var items = document.getElementsByTagName("li");
+    var currentIndex = 1;
+    
+    prev.onclick=function(){
+    	var prev = document.getElementById("list"+currentIndex);
+        currentIndex--;
+        if (currentIndex==0){
+        	currentIndex=5;
+        }
+        var current = document.getElementById("list"+currentIndex);
+        prev.style.webkitTransform = "rotateX(90deg)";
+        current.style.webkitTransform = 'rotateX(0deg)';
+
+    }
+    next.onclick=function(){
+    	var prev = document.getElementById("list"+currentIndex);
+        currentIndex++;
+        if (currentIndex==6){
+        	currentIndex=1;
+        }
+        var current = document.getElementById("list"+currentIndex);
+        prev.style.webkitTransform = "rotateX(-90deg)";
+        current.style.webkitTransform = 'rotateX(0deg)';
+
+    }
+ </script>
+</body>
+</html>
