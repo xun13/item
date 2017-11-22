@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		oop
+	</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+         padding: 0;
+         margin: 0;
+         font-family: "微软雅黑";
+         font-size: 12px;
+		}
+		.tab-nav{
+			width: 200px;
+			height:30px;
+			
+		}
+        .tab{
+        	width:200px;
+        	margin:20px auto;
+        }
+		li{
+			list-style: none;
+			display:inline-block;
+			width:60px;
+			float:left;
+			margin-right:5px;
+			line-height: 30px;
+            text-align: center;
+			height:30px;
+			background: #FFF;
+			cursor:pointer;
+		}
+		a{
+			text-decoration: none;
+		}
+		.active{
+			background:#69c;
+			color:#FFF;
+		}
+		
+		.items{
+			width:200px;
+			height:160px;
+            margin:0 auto;
+            position:relative;
+		}
+		.item{
+			width:200px;
+			height: 160px;
+			background: #69c;
+			position:absolute;
+			display:none;
+		}
+		.current{
+			display:block;
+		}
+		.item1{
+			background:#EEE;
+		}
+		.item2{
+			background:#00F;
+		}
+	</style>
+	 </head>
+<body>
+  <div class="tab js-tab" data-config='{
+                                "triggertype":"click",
+                                "effect":"fade",
+                                "invoke":2,
+                                "auto":1000               
+                                }'>
+  <div class="tab-nav">
+  		<ul>
+  		<li class="active"><a href="#">111</a></li>
+  		<li><a href="#">222</a></li>
+  		<li><a href="#">333</a></li>
+  	</ul>
+  </div>                              
+  <div class="items">
+  	<div class="item item1 current"></div>
+  	<div class="item item2"></div>
+  	<div class="item item3"></div>
+  </div>
+</div>
+</body>
+  <script type="text/javascript" src="jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="oop.js"></script>
+  <script type="text/javascript">
+  	$(function(){
+  		//var tab1 = new Tab($(".js-tab").eq(0));
+       $(".js-tab").tab();
+  	})
+  	
+  </script>
+</body>
+</html>
