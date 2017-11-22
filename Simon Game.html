@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by xun13 (http://jsbin.com/viqiqij/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Simon Game</title>
+  <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<style id="jsbin-css">
+*{
+  padding:0;
+  margin:0;
+}
+body{
+  background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png')
+}
+.wrap{
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  margin:20px auto;
+  overflow:hidden;
+  background:black;
+  border:10px solid black;
+  position:relative;
+}
+.item{
+  float:left;
+  width:190px;
+  height:190px;
+  margin:5px;
+}
+.green{
+  background:#00A74A;
+  border-top-left-radius:100%;
+}
+.green:active,.green_active{
+  box-shadow: inset 2px 1px 2px 1px rgba(0, 0, 0, 0.2);
+   background-color: #47c166; 
+}
+.red{
+  background:#9F0F17;
+  border-top-right-radius:100%;
+}
+.red:active,.red_active{
+  box-shadow: inset -2px 1px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #ea3336;
+}
+.yellow{
+  background:#CCA707;
+  border-bottom-left-radius:100%;
+}
+.yellow:active,.yellow_active{
+  box-shadow: inset 2px -1px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #f7f145;
+}
+.blue{
+  background:#094A8F;
+  border-bottom-right-radius:100%;
+}
+.blue:active,.blue_active{
+   box-shadow: inset -2px -1px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #05abff;
+}
+.item:active,.active{
+  opacity:.7;
+}
+.control{
+  position:absolute;
+  width:170px;
+  height:170px;
+   background:#ECE7EE;
+  border-radius:50%;
+  border:10px solid black; 
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+}
+p{
+  padding:5px;
+  width:50px;
+  background:#380214;
+  margin:50px auto 10px auto;
+  color:#BC3638;
+  font-size:1.5em;
+  border-radius:10px;
+  border:3px solid black;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="item green">    
+  </div>
+   <div class="item red">    
+  </div>
+   <div class="item yellow">    
+  </div>
+   <div class="item blue">   
+  </div>
+  <div class="control">
+    <p>
+      --
+    </p>
+    <button>
+      start
+    </button>
+  </div>
+</div>
+<script id="jsbin-javascript">
+var c=["green_active","red_active","yellow_active","blue_active"];
+var time=null,arr=[],len;
+$("button").click(function(){
+   len =1;
+  start();
+})
+$(".item").click(function(){
+  var test = $(this).index();
+  if (test==arr[0]&&arr.length==1)
+    {
+      len++;
+      start();
+    }
+  else
+    {
+      if (test==arr[0])
+        arr.shift();
+      else
+        start();
+    }
+})
+function start(){
+  console.log("start")
+  $("p").text(len)
+  var i=0;
+  arr=[];
+  for (var j=0;j<len;j++){
+    arr.push(Math.floor(Math.random()*4));   
+  }
+  time=setInterval(function(){
+    if (i<arr.length){
+      shine(arr[i]);
+      i++;
+    }
+    else
+      clearInterval(time);
+  },1000)
+}
+function shine(ind){//闪烁
+  $(".item").eq(ind).addClass(c[ind]);
+  setTimeout(function(){
+    $(".item").eq(ind).removeClass(c[ind]);
+  },300)
+}
+</script>
+</body>
+</html>
