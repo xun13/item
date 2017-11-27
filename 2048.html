@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by xun13 (http://jsbin.com/xejecoj/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>2048</title>
+<style id="jsbin-css">
+*{
+			padding:0;
+			margin:0;
+			font-family: "微软雅黑";
+   text-align:center;
+  font-weight:normal;
+		}
+		.container{
+			width:304px;
+			height:304px;
+			background: #69c;
+			border:3px solid #69c;
+			margin:10px auto;
+			border-radius: 5px;
+		}
+		.cell{
+			width:70px;
+			height:70px;
+			margin:3px;
+			float:left;
+			background:#eee;
+			line-height: 70px;
+			color: #eee;
+			text-align: center;
+			font-size: 30px;
+			border-radius: 2px;
+		}
+		.active{
+			background: #ff5050;
+		}
+h4{
+  color:#69c;
+  font-size:30px;
+}
+p{
+  color:#a3a3a3;
+  font-size:20px;
+}
+
+</style>
+</head>
+<body>
+  <h4>2048</h4>
+  <p>sort:<span id="sort">0</span></p>
+<div class="container">
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+	  <div class="cell"></div>
+  
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	</div>
+<script id="jsbin-javascript">
+var arr = [[0,0,0,0],
+          [0,0,0,0],
+          [0,0,0,0],
+          [0,0,0,0]];
+/**游戏开始**/
+init();
+/**游戏过程判定**/
+$(document).keydown(function(e){
+  if (e.which==37)
+    check("left");
+ else if (e.which==38)
+    check("up");
+ else if (e.which==39)
+    check("right");
+ else if (e.which==40)
+    check("down");
+  if (isGameover()){
+    alert("Game Over");
+    clear();
+  }
+  else{
+    init();
+  }
+})
+/**重新开始游戏**/
+function clear(){
+       $(".cell").removeClass('active');
+       $(".cell").text("");
+       sort=0;
+       $("#sort").text("");
+       for (var i=0;i<4;i++){
+       	for (var j=0;j<4;j++){
+       		arr[i][j]=0;
+       	}
+       }
+       init();
+	}
+function check(mode){
+  if (mode == "up"||mode=="down")
+    trans();
+  for (var i=0;i<4;i++){
+      trim(i,mode);
+	  times(i);
+	  trim(i,mode); 
+	}
+  if (mode == "up"||mode=="down")
+    trans();
+  point();
+}
+    /**去空格**/ 
+var sort = 0;
+    function trim(i,mode){
+	  arr[i] = arr[i].filter(function(element){
+	    return element!==0;
+	  })
+	  var len = arr[i].length;
+	  for (var j=len;j<4;j++){
+	    arr[i].unshift(0);
+	  }
+      if (mode=="left"||mode=="up")
+        arr[i]=arr[i].reverse();
+	}
+	/**相同数字叠加**/
+	function times(i){
+	  for (var j=0;j<3;j++){
+	    if (arr[i][j]==arr[i][j+1]&&arr[i][j]){
+	      arr[i][j]*=2;
+          sort += arr[i][j];
+          $("#sort").text(sort);
+	      arr[i][j+1]=0;
+	    }
+	  }
+	}
+    /**数组行列转换便于叠加和去空位**/
+	function trans(){
+	  var t=0;
+	  var len = arr.length;
+	  for (var i=0;i<len;i++){
+	    for (var j=i;j<len;j++){
+	      t=arr[i][j];
+	      arr[i][j]=arr[j][i];
+	      arr[j][i]=t;
+	    }
+	  }
+    }
+
+	/**根据数组表示出界面**/
+	function point(){
+	$(".cell").removeClass("active");
+	$(".cell").text("");
+	  for (var i=0;i<4;i++){
+	    for (var j=0;j<4;j++){
+	      if (arr[i][j]){
+	        $(".cell").eq(i*4+j).addClass("active");
+	        $(".cell").eq(i*4+j).text(arr[i][j]);
+	      }
+	    }
+	  }
+	}
+/**随机产生2或4，游戏初始化**/
+	function init(){
+		var ind , i ,j ;
+		var num = Math.random()>0.5?2:4;      
+	   do{
+	    	ind = Math.floor(Math.random()*16);
+ 	        i = Math.floor(ind/4);
+ 	        j = ind%4;
+       }while(arr[i][j])
+	    arr[i][j]=num;
+      point();
+	}
+/**判断是否结束**/
+	function isGameover(){
+	  var gameOver  = true;
+	  for (var i=0;i<4;i++){
+	    for (var j=0;j<4;j++){
+	      if (!arr[i][j])
+	        {
+	         gameOver=false;
+	        return gameOver;
+	        }
+	    }
+	  }
+      return gameOver;
+	}
+</script>
+</body>
+</html>
