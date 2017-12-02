@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>date</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+			border: none;
+		}
+        .datepick-input{
+        	width:296px;
+        	height:40px;
+            border:2px solid #eee;
+        }
+
+        .datepick{
+        	position: absolute;
+        	width: 300px;
+            font-family: "微软雅黑";    
+            display: none;       
+        }
+        .datepick .datepick-header{
+        	background: #69c;
+        	width: 300px;
+        	height: 50px;
+        	box-sizing: border-box;
+        	text-align: center;
+        	line-height: 50px;
+            color: #fff;
+        }
+        .datepick table{
+           width: 300px;
+           text-align: center;
+           border-collapse: collapse;
+           cursor: pointer;
+        }
+        .datepick-td,.datepick td,.datepick thead tr{
+        	border:1px solid #eee;
+        }
+        .datepick-td{
+        	height:42px;
+        }
+        .datepick-td:hover{
+        	background: #eee;
+        }
+        .datepick-btn{
+        	text-decoration: none;
+            font-size: 40px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;    
+            color: #fff;
+        }
+        .datepick-prev-btn{
+        	float:left;
+        }
+        .datepick-next-btn{
+        	float: right;
+        }
+        .datepick .td-selected{
+        	background:#69c;
+        	color:#fff;
+        }
+	</style>
+</head>
+<body>
+ <input type="text" value="" class="datepick-input" />
+ <div class="datepick">
+   	<div class="datepick-header"> 
+   		<a href="javascript:pick(-1)" class="datepick-btn datepick-prev-btn">&lt;</a>
+   		<a href="javascript:pick(1)" class="datepick-btn datepick-next-btn">&gt;</a>
+   		<h4 id="datepick-val">2017-12</h4>
+   	</div>
+   	<table id="datepick-table">
+   	 <thead>
+   		<tr>
+   		<th>日</th>
+   		<th>一</th>
+   		<th>二</th>
+   		<th>三</th>
+   		<th>四</th>
+   		<th>五</th>
+   		<th>六</th>
+   	    </tr>
+   	 </thead>   		
+   	 <tbody>
+	   	<tr>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   	</tr>
+	   	<tr>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   	</tr>
+	    <tr>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   	</tr>
+	   	<tr>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   	</tr>
+	   	<tr>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   	</tr>
+	    <tr>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   		<td></td>
+	   	</tr>
+    </tbody>
+   </table>
+</div>
+<script type="text/javascript" src="jquery-3.2.1.js"></script>
+<script type="text/javascript">
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth();
+	var day = date.getDate();
+    /**点击input显示表格**/	
+	$(".datepick-input").click(function(){		
+		init();
+	})
+    
+    /**初始化表格，年月**/
+    function init(){
+
+    	$("#datepick-table td").each(function(){
+           $(this).text("");
+           $(this).removeClass('td-selected');
+           $(this).removeClass('datepick-td');
+    	});
+
+    	$("#datepick-val").text(year+"-"+parseInt(month+1));
+        var firstDay = new Date(year,month,1);
+        var lastDay = new Date(year,month+1,0);
+
+        var week = firstDay.getDay();
+        var limit = lastDay.getDate();
+
+        $("#datepick-table td").each(function() {
+        	var i = $(this).parent().index();
+        	var j = $(this).index();
+
+        	var text = i*7+j-week+1;
+
+        	if (text>=1&&text<=limit){
+        		$(this).text(text);
+        		$(this).addClass('datepick-td');
+        	}
+
+        	if (text==1){
+        		$(this).addClass('td-selected');
+        	}
+        });
+
+        $(".datepick").slideDown();
+    }
+    /**a标签改变表示年月**/
+    function pick(direction){
+       month += parseInt(direction);
+       if (month<0||month>11){
+       	month = 12-Math.abs(month);
+       	year += parseInt(direction);
+       }
+       init();
+    }
+
+    /**点击挑选日期**/
+    $("#datepick-table td").click(function(){
+      day = $(this).text();
+      $(".datepick").slideUp();
+      $(".datepick-input").val(year+"-"+parseInt(month+1)+"-"+day);
+    })
+</script>
+</body>
+</html>
