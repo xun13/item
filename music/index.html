@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		music
+	</title>       
+	<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin:0;
+		}
+		.music{       
+           width: 50px;
+           height: 50px;
+           background: url(music-log.jpg) no-repeat center center;
+           background-size: cover;
+           left:300px;
+           top:20px;
+           cursor: move;
+           border-radius: 50%;
+           overflow: hidden;
+           position:absolute;
+		}
+		.music-main{
+			width:250px;
+			height: 320px;
+			background: #fff;
+			font-size: 20px;
+			position:absolute;
+			display:none;
+			border-radius: 3px;
+			border:1px solid #000;
+		}
+		.music-back{
+			width:150px;
+			height:150px;
+			border-radius: 50%;
+			margin:30px auto 10px auto;
+			border: 2px solid #000;
+			background-size: cover;
+			background-position: center center;
+			animation: circle 12s linear infinite;
+		}
+		@keyframes circle{
+            from{transform: rotate(0deg);}
+            to{transform: rotate(360deg);}
+		}
+		.music-bar{
+			margin:10px auto 15px auto;
+			height:4px;
+			width:200px;
+			background:#eee;
+			position:relative;
+			cursor: pointer;
+		}
+        .music-bar span{
+        	position:absolute;
+        	font-size: 10px;
+        }
+        #song-count{
+        	top:4px;
+        	left:0;
+        }
+        #song-length{
+        	top:4px;
+        	right:0;
+        }
+		.music-count-bar{
+			background: #000;
+			height:100%;
+			width:0;
+			
+		}
+		.music-info{
+			margin-bottom:15px;
+			height:30px;
+			width:100%;
+			text-align: center;
+		}
+		.music-info div{
+			height:15px;
+			font-size: 15px;
+		}
+		.music-btn{
+			margin-top: 10px;
+			font-size:40px;
+			height:40px;
+			text-align: center;
+			position: relative;
+		}
+		.music-btn i{
+			color:#000;
+			margin:5px;
+		}
+		.music-volume-bar{
+			position: absolute;
+			width:110px;
+			height:11px;
+			background:#a3a3a3;
+			left:40px;
+			bottom:25px;
+			transform:rotate(-90deg);
+			transform-origin: left;
+			cursor:pointer;
+			display:none;
+		}
+		.volume-bar{
+			width:10px;
+			height:5px;
+			background:#000;
+            margin-top: 3px;
+            margin-left:5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="music" draggable="true">
+		
+	</div>
+	<div class="music-main">
+		<div class="music-back">
+			<audio id="player" src=""></audio>
+		</div>
+		<div class="music-info">
+			<div id="music-title">
+				
+			</div>
+			<div id="music-artist">
+				
+			</div>
+		</div>
+		<div class="music-bar">
+			<span id="song-count">00:00</span>
+			<div class="music-count-bar" id="song-bar"></div>
+			<span id="song-length">00:00</span>
+		</div>		
+		<div class="music-btn">
+         <div class="music-volume-bar">
+         	<div class="volume-bar">
+         		
+         	</div>
+         </div>
+		 <a href="#" id="music-volume"><i class="fa fa-volume-down"></i></a>
+		 <a href="javascript:getPrevSong()"><i class="fa fa-backward" style="font-size: 37px;"></i></a>
+		 <a href="javascript:toggleStatus()"><i class="fa fa-pause-circle" id="changeState"></i></a>
+		 <a href="javascript:getNewSong()"><i class="fa fa-forward" style="font-size: 37px;"></i></a>
+		</div>
+		
+	</div>
+   <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+   <script type="text/javascript" src="music.js"></script>
+   <script type="text/javascript">
+    /**$.ajax({
+   		url:'http://api.jirengu.com/fm/getChannels.php',
+   		success:function(data){
+          var ret = JSON.parse(data);
+          console.log(data.channels);
+          $("#channel").text(data);
+   		}
+   	})
+   	**/
+   </script>
+</body>
+</html>
