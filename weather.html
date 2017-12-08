@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>weather</title>
+    <style>
+    *{
+        padding:0;
+        margin:0;
+        font-family: "Microsoft YaHei";
+    }
+        
+    .wrap{
+        width:280px;
+        border:1px solid #69c;
+        border-radius:3px;
+        margin:10px auto;
+        text-align: center;
+        padding:10px 0;
+    }
+    input{
+        border:none;
+        border-radius: 3px;
+        margin-right:5px;
+        width:140px;
+        height:30px;
+        border: 1px solid #a3a3a3;
+    }
+    button{
+        height:30px;
+        background:#69c;
+        border:none;
+        border-radius: 3px;
+        width:70px;
+        color: #fff;
+    }
+    .head{
+        margin:10px auto;
+        width:230px;
+        height:70px;    
+        font-size:13px;
+    }
+    .cont{
+        width:230px;
+        margin:10px auto;
+        display:none;
+    }
+    li{
+        list-style: none;
+        margin:7px;
+        
+    }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="head">
+            <input type="text">
+            <button>查询</button>
+            <p>输入城市名回车或按下按钮查询输入城市实时天气</p>        
+        </div>
+    
+        <div class="cont">
+          <h4>当前查询城市：<span id="city"></span></h4>
+          <ul>
+              <li>天气状况：<span id="cond"></span></li>
+              <li>体感温度：<span id="fl"></span></li>
+              <li>相对湿度：<span id="hum"></span></li>
+              <li>降水量：<span id="pcpn"></span></li>
+              <li>能见度：<span id="vis"></span></li>
+              <li>风向：<span id="wind_dir"></span></li>
+              <li>风力：<span id="wind_sc"></span></li>
+          </ul>
+        </div>
+    </div>
+    <script type="text/javascript" src="../jquery-3.2.1.js"></script>
+    <script>
+        var key = "cedef75dd64645a1b0052ef7b9913876";
+        var url = "https://free-api.heweather.com/s6/weather/now?";
+        $("button").click(function () {
+            if ($(":text").val()) {
+                var input = encodeURIComponent($(":text").val());
+                var  weaUrl = url + "key=" + key + "&location=" + input;
+                $.ajax({
+                    url: weaUrl,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (result){
+                        var data = result.HeWeather6[0];    
+                        if (data.status=="ok"){
+                            var basic = data.basic;
+                            $("#city").text(basic.admin_area+" "+basic.location);
+                            var now = data.now;           
+                            $("#cond").text(now.cond_txt);
+                            $("#fl").text(now.fl);
+                            $("#hum").text(now.hum);
+                            $("#pcpn").text(now.pcpn);
+                            $("#vis").text(now.hum);
+                            $("#wind_dir").text(now.wind_dir);
+                            $("#wind_sc").text(now.wind_sc);
+                        }
+                        else{
+                            alert(data.status);
+                        }
+                    }
+                });
+                $(".cont").slideDown();
+            };
+        });
+        $(":text").keypress(function (e) {
+            if (e.which == 13) {
+                $("button").trigger("click");
+            }
+        });
+        $(".wrap").mouseleave(function(){
+            $(".cont").slideUp();
+        })
+    </script>
+    
+</body>
+</html>
