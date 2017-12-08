@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		图片弹窗
+	</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		#origin{
+			width:300px;
+			height:200px;
+			border-radius: 5px;
+			display:block;
+		}
+		#origin:hover{
+			opacity: .7;
+		}
+		#hid{
+			position:relative;
+			bottom:200px;
+			width:900px;
+			height:600px;
+			background-color:rgba(0,0,0,.7);
+			display:none;
+			padding-top: 50px;
+			box-sizing: border-box;
+		}
+		#hid-img{
+			width:900px;
+			height:auto;
+			animation: change 1s ease;
+		}
+        @keyframes change{
+            from{transform: scale(0);}
+            to{transform: scale(1);}
+        }
+		span{
+			display:block;
+			position:absolute;
+			color:#fff;
+			width:40px;
+			height:40px;
+			text-align: center;
+			line-height: 40px;
+			cursor: pointer;
+			top:0;
+			right: 0;
+            font-family: "微软雅黑";
+		}
+	</style>
+</head>
+<body>
+  <img id="origin" src="../back.jpg"/>
+  <div id="hid">
+  	<span>&times;</span>
+  	<img src="../back.jpg" id="hid-img"/>
+  </div>
+  <script type="text/javascript">
+  	var img = document.getElementsByTagName("img")[0];
+  	var oDiv  = document.getElementById("hid");
+  	var span = document.getElementsByTagName("span")[0];
+  	img.onclick=function(){
+  		oDiv.style.display = 'block'
+  	}
+  	span.onclick=function(){
+  		oDiv.style.display = "none";
+  	}
+  </script>
+</body>
+</html>
